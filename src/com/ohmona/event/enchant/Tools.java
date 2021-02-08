@@ -1,97 +1,102 @@
 package com.ohmona.event.enchant;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Tools {
 	
-	public ItemStack[] tools = {
-			new ItemStack(Material.WOODEN_SHOVEL),
-			new ItemStack(Material.WOODEN_PICKAXE),
-			new ItemStack(Material.WOODEN_HOE),
-			new ItemStack(Material.WOODEN_AXE),
-			new ItemStack(Material.WOODEN_SWORD),
-			new ItemStack(Material.LEATHER_HELMET),
-			new ItemStack(Material.LEATHER_CHESTPLATE),
-			new ItemStack(Material.LEATHER_LEGGINGS),
-			new ItemStack(Material.LEATHER_BOOTS),
+	public Material[] tools = {
+			Material.WOODEN_SHOVEL,
+			Material.WOODEN_PICKAXE,
+		  	Material.WOODEN_HOE,
+			Material.WOODEN_AXE,
+			 Material.WOODEN_SWORD,
+			Material.LEATHER_HELMET,
+			 Material.LEATHER_CHESTPLATE,
+			 Material.LEATHER_LEGGINGS,
+			 Material.LEATHER_BOOTS,
 			
-			new ItemStack(Material.STONE_SHOVEL),
-			new ItemStack(Material.STONE_PICKAXE),
-			new ItemStack(Material.STONE_HOE),
-			new ItemStack(Material.STONE_AXE),
-			new ItemStack(Material.STONE_SWORD),
-			new ItemStack(Material.CHAINMAIL_HELMET),
-			new ItemStack(Material.CHAINMAIL_CHESTPLATE),
-			new ItemStack(Material.CHAINMAIL_LEGGINGS),
-			new ItemStack(Material.CHAINMAIL_BOOTS),
+			 Material.STONE_SHOVEL,
+			 Material.STONE_PICKAXE,
+			 Material.STONE_HOE,
+			 Material.STONE_AXE,
+			 Material.STONE_SWORD,
+			 Material.CHAINMAIL_HELMET,
+			 Material.CHAINMAIL_CHESTPLATE,
+			 Material.CHAINMAIL_LEGGINGS,
+			 Material.CHAINMAIL_BOOTS,
 			
-			new ItemStack(Material.IRON_SHOVEL),
-			new ItemStack(Material.IRON_PICKAXE),
-			new ItemStack(Material.IRON_HOE),
-			new ItemStack(Material.IRON_AXE),
-			new ItemStack(Material.IRON_SWORD),
-			new ItemStack(Material.IRON_HELMET),
-			new ItemStack(Material.IRON_CHESTPLATE),
-			new ItemStack(Material.IRON_LEGGINGS),
-			new ItemStack(Material.IRON_BOOTS),
+			 Material.IRON_SHOVEL,
+			 Material.IRON_PICKAXE,
+			 Material.IRON_HOE,
+			 Material.IRON_AXE,
+			 Material.IRON_SWORD,
+			 Material.IRON_HELMET,
+			 Material.IRON_CHESTPLATE,
+			 Material.IRON_LEGGINGS,
+			 Material.IRON_BOOTS,
 			
-			new ItemStack(Material.GOLDEN_SHOVEL),
-			new ItemStack(Material.GOLDEN_PICKAXE),
-			new ItemStack(Material.GOLDEN_HOE),
-			new ItemStack(Material.GOLDEN_AXE),
-			new ItemStack(Material.GOLDEN_SWORD),
-			new ItemStack(Material.GOLDEN_HELMET),
-			new ItemStack(Material.GOLDEN_CHESTPLATE),
-			new ItemStack(Material.GOLDEN_LEGGINGS),
-			new ItemStack(Material.GOLDEN_BOOTS),
+			Material.GOLDEN_SHOVEL,
+			Material.GOLDEN_PICKAXE,
+			Material.GOLDEN_HOE,
+			Material.GOLDEN_AXE,
+			Material.GOLDEN_SWORD,
+			Material.GOLDEN_HELMET,
+			Material.GOLDEN_CHESTPLATE,
+			Material.GOLDEN_LEGGINGS,
+			Material.GOLDEN_BOOTS,
 			
-			new ItemStack(Material.DIAMOND_SHOVEL),
-			new ItemStack(Material.DIAMOND_PICKAXE),
-			new ItemStack(Material.DIAMOND_HOE),
-			new ItemStack(Material.DIAMOND_AXE),
-			new ItemStack(Material.DIAMOND_SWORD),
-			new ItemStack(Material.DIAMOND_HELMET),
-			new ItemStack(Material.DIAMOND_CHESTPLATE),
-			new ItemStack(Material.DIAMOND_LEGGINGS),
-			new ItemStack(Material.DIAMOND_BOOTS),
+			Material.DIAMOND_SHOVEL,
+			Material.DIAMOND_PICKAXE,
+			Material.DIAMOND_HOE,
+			Material.DIAMOND_AXE,
+			Material.DIAMOND_SWORD,
+			Material.DIAMOND_HELMET,
+			Material.DIAMOND_CHESTPLATE,
+			Material.DIAMOND_LEGGINGS,
+			Material.DIAMOND_BOOTS,
 			
-			new ItemStack(Material.NETHERITE_SHOVEL),
-			new ItemStack(Material.NETHERITE_PICKAXE),
-			new ItemStack(Material.NETHERITE_HOE),
-			new ItemStack(Material.NETHERITE_AXE),
-			new ItemStack(Material.NETHERITE_SWORD),
-			new ItemStack(Material.NETHERITE_HELMET),
-			new ItemStack(Material.NETHERITE_CHESTPLATE),
-			new ItemStack(Material.NETHERITE_LEGGINGS),
-			new ItemStack(Material.NETHERITE_BOOTS),
+			Material.NETHERITE_SHOVEL,
+			 Material.NETHERITE_PICKAXE,
+			Material.NETHERITE_HOE,
+			Material.NETHERITE_AXE,
+			Material.NETHERITE_SWORD,
+			Material.NETHERITE_HELMET,
+			 Material.NETHERITE_CHESTPLATE,
+			Material.NETHERITE_LEGGINGS,
+			Material.NETHERITE_BOOTS,
 			
 			//TOOLS
-			new ItemStack(Material.FLINT_AND_STEEL),
-			new ItemStack(Material.FISHING_ROD),
-			new ItemStack(Material.SHEARS),
+			Material.FLINT_AND_STEEL,
+			Material.FISHING_ROD,
+			Material.SHEARS,
 			
 			//WEAPONS
-			new ItemStack(Material.TURTLE_HELMET),
-			new ItemStack(Material.BOW),
-			new ItemStack(Material.SHIELD),
-			new ItemStack(Material.TRIDENT),
-			new ItemStack(Material.CROSSBOW),
+			Material.TURTLE_HELMET,
+			Material.BOW,
+			Material.SHIELD,
+			Material.TRIDENT,
+			Material.CROSSBOW,
 			
 			//EASTEREGGS
-			new ItemStack(Material.STICK),
-			new ItemStack(Material.BOOK),
-			new ItemStack(Material.BLAZE_ROD),
+			Material.STICK,
+			Material.BOOK,
+			Material.BLAZE_ROD,
 	};
 	public Enchantment[] enchants = {
 			Enchantment.ARROW_DAMAGE,
 			Enchantment.ARROW_FIRE,
 			Enchantment.ARROW_INFINITE,
-			Enchantment.ARROW_KNOCKBACK,
-			Enchantment.BINDING_CURSE,
+			//Enchantment.BINDING_CURSE,
 			Enchantment.CHANNELING,
 			Enchantment.DAMAGE_ALL,
 			Enchantment.DAMAGE_ARTHROPODS,
@@ -123,7 +128,7 @@ public class Tools {
 			Enchantment.SOUL_SPEED,
 			Enchantment.SWEEPING_EDGE,
 			Enchantment.THORNS,
-			Enchantment.VANISHING_CURSE,
+			//Enchantment.VANISHING_CURSE,
 			Enchantment.WATER_WORKER
 	};
 	
@@ -131,14 +136,22 @@ public class Tools {
 		
 		System.out.println(item);
 		
-		Enchantment ent = (Enchantment) item.getEnchantments();
-		item.removeEnchantment(ent);
+		ItemMeta meta = item.getItemMeta();
+		Material mat = item.getType();
 		
+		System.out.println(meta);
+	//	System.out.println(enchantment);
+	//	System.out.println(enchant);
 		System.out.println(item);
 		
 		for(int i = 0; i < tools.length; i++) {
-			if(item.equals(tools[i])) {
+			if(mat.equals(tools[i])) {
 				return true;
+			}
+			for (int j = 0; j < enchants.length; j++) {
+				if(item.containsEnchantment(enchants[j])) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -156,21 +169,30 @@ public class Tools {
 	public int getRandomEnchantLevelNumber() {
 		double randomNumber = Math.random();
 		randomNumber = randomNumber * 10;
+		if((int)randomNumber == 0) {
+			randomNumber = getRandomEnchantLevelNumber();
+		}
 		
 		return (int)randomNumber;
 	}
 	
-	public ItemStack enchantItem(ItemStack item) {
+	public ItemStack enchantItem(ItemStack item, World w, Location loc) {
 		ItemMeta meta = item.getItemMeta();
 		
-		meta.addEnchant(enchants[getRandomEnchantNumber()], getRandomEnchantLevelNumber(), true);
+		if(item.getEnchantments().size() < 1) {
+			meta.addEnchant(enchants[getRandomEnchantNumber()], getRandomEnchantLevelNumber(), true);
+			w.playSound(loc, Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1,1);
+		}
 		item.setItemMeta(meta);
 		return item;
 	}
 	
 	public ItemStack removeEnchantItem(ItemStack item) {
-		Enchantment ent = (Enchantment) item.getEnchantments();
-		item.removeEnchantment(ent);
+		
+		for(int i = 0 ; i<enchants.length ; i++) {
+			item.removeEnchantment(enchants[i]);
+		}
+		
 		return item;
 	}
 	

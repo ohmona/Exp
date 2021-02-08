@@ -74,14 +74,13 @@ public void onEnchantTableClick (PlayerInteractEvent e){
 				}
 				else if(tools.isItemTool(cItem)) {
 					e.setCancelled(true);
-					tools.enchantItem(cItem);
+					tools.enchantItem(cItem, w , loc);
 					enchantInv.setItem(4, cItem);
 					openInventory(p);
-					w.playSound(loc, Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1,1);
 					e.getWhoClicked().sendMessage("clicked");
 				}
 				else {
-					e.setCancelled(true);
+				e.setCancelled(true);
 					e.getWhoClicked().sendMessage("wrong click");
 				}
 			}
@@ -94,7 +93,7 @@ public void onEnchantTableClick (PlayerInteractEvent e){
 	@EventHandler
 	public void onGrindstoneClick (PlayerInteractEvent e){ 
 		
-		final GrindStoneInventory grindInv = new GrindStoneInventory();
+		GrindStoneInventory grindInv = new GrindStoneInventory();
 		
 		Block b = e.getClickedBlock();
 		

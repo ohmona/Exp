@@ -234,9 +234,6 @@ public class OhmonaEvent extends OhmonaFile  implements Listener {
 		else {
 		}
 	}
-	
-	// INVENTORY SECTION
-	
 }
 
 
