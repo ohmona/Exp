@@ -324,20 +324,23 @@ public class Tools {
         if(lv == 0) {
             return 1;
         }
-        if(lv == 1) {
+        else if(lv == 1) {
             return 2;
         }
-        if(lv == 2) {
+        else if(lv == 2) {
             return 3;
         }
-        if(lv == 3) {
+        else if(lv == 3) {
             return 4;
         }
-        if(lv == 4) {
+        else if(lv == 4) {
             return 5;
         }
-        if(lv == 5) {
+        else if(lv == 5) {
             return 6;
+        }
+        else if(lv > 5) {
+            return 7;
         }
         return 1;
     }
