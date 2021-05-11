@@ -1,5 +1,6 @@
 package com.ohmona.exp;
 
+import com.ohmona.exp.command.OhmonaGrade;
 import com.ohmona.exp.command.OhmonaHelp;
 import org.bukkit.Bukkit;
 
@@ -33,6 +34,7 @@ public class Main extends JavaPlugin {
 
         getCommand("he").setExecutor(new OhmonaCommand());
         getCommand("ex").setExecutor(new OhmonaHelp());
+        getCommand("gradeupitem").setExecutor(new OhmonaGrade());
 
         getServer().getPluginManager().registerEvents(ohmonaEvent, this);
         getServer().getPluginManager().registerEvents(enchantInventory, this);

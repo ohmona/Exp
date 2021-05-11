@@ -2,9 +2,14 @@ package com.ohmona.exp.event.enchant;
 
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tools {
 
@@ -163,10 +168,6 @@ public class Tools {
     public int getRandomEnchantLevelNumber(int lv) {
         double randomNumber = Math.random();
 
-        // 해당 유저의 레벨을 받아서 등급으로 나눔; 5등금까지 1000레벨
-        float grade = lv / 100;
-        grade = (int) grade;
-
         randomNumber = randomNumber * 100;
         int intRan = (int) randomNumber;
 
@@ -188,21 +189,33 @@ public class Tools {
         else if(intRan >= 77 && intRan <= 84) {
             return 6;
         }
-        else if(intRan >= 86 && intRan <= 91) {
+        else if(intRan >= 85 && intRan <= 90) {
             return 7;
         }
-        else if(intRan >= 92 && intRan <= 96) {
+        else if(intRan >= 91 && intRan <= 95) {
             return 8;
         }
-        else if(intRan >= 97 && intRan <= 99) {
+        else if(intRan >= 96 && intRan <= 98) {
             return 9;
         }
-        else if(intRan == 85) {
+        else if(intRan == 99) {
             return 10;
         }
         else {
-            return 0;
+            return 1;
         }
+    }
+
+    public int getRandomGradeUpNumber() {
+        double random = Math.random();
+        random *= 10000;
+        random = (int) random;
+        if(random > 10000) {
+            while(random > 10000) {
+                random = getRandomGradeUpNumber();
+            }
+        }
+        return (int)random;
     }
 
     public ItemStack enchantItem(ItemStack item, World w,Player p, Location loc, int lv) {
@@ -211,8 +224,21 @@ public class Tools {
 
         if(grade == 1) {
             if(item.getEnchantments().size() < 1) {
+                int randomGrade = getRandomGradeUpNumber();
+
                 meta.addEnchant(enchants[getRandomEnchantNumber()], getRandomEnchantLevelNumber(lv), true);
                 w.playSound(loc, Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1, 1);
+
+                // grade system
+                if(randomGrade <= 100) {
+                    ArrayList<String> gradename = new ArrayList<String>();
+                    gradename.add("II");
+                    meta.setLore(gradename);
+
+                    p.stopSound(Sound.BLOCK_ENCHANTMENT_TABLE_USE);
+                    p.playSound(loc, Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                    p.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "Grade UP !");
+                }
 
                 // 레벨제거
                 p.setLevel(lv - removeLevel(p));
@@ -220,10 +246,22 @@ public class Tools {
         }
         else if(grade == 2) {
             if(item.getEnchantments().size() < 1) {
-                for(int i = 1; i <= 2; i++) {
-                    meta.addEnchant(enchants[getRandomEnchantNumber()], getRandomEnchantLevelNumber(lv), true);
-                    w.playSound(loc, Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1, 1);
+                int randomGrade = getRandomGradeUpNumber();
+                // grade system
+                if(randomGrade <= 10) {
+                    ArrayList<String> gradename = new ArrayList<String>();
+                    gradename.add("III");
+                    meta.setLore(gradename);
+
+                    p.stopSound(Sound.BLOCK_ENCHANTMENT_TABLE_USE);
+                    p.playSound(loc, Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                    p.sendMessage(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "Grade UP !");
+                    spawnFirework(loc, p.getWorld(), Color.WHITE);
                 }
+
+                meta.addEnchant(enchants[getRandomEnchantNumber()], getRandomEnchantLevelNumber(lv), true);
+                meta.addEnchant(enchants[getRandomEnchantNumber()], getRandomEnchantLevelNumber(lv), true);
+                w.playSound(loc, Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1, 1);
 
                 // 레벨제거
                 p.setLevel(lv - removeLevel(p));
@@ -231,6 +269,21 @@ public class Tools {
         }
         else if(grade == 3) {
             if(item.getEnchantments().size() < 1) {
+                int randomGrade = getRandomGradeUpNumber();
+                // grade system
+                if(randomGrade <= 1) {
+                    ArrayList<String> gradename = new ArrayList<String>();
+                    gradename.add("IV");
+                    meta.setLore(gradename);
+
+                    p.stopSound(Sound.BLOCK_ENCHANTMENT_TABLE_USE);
+                    p.playSound(loc, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
+                    p.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "Grade UP !");
+                    spawnFirework(loc, p.getWorld(), Color.WHITE);
+                    for(Player eachPlayer : Bukkit.getOnlinePlayers()) {
+                        eachPlayer.sendTitle(ChatColor.GOLD + "This player is legendary",ChatColor.GRAY + p.getName()+ "", 20, 50, 20);
+                    }
+                }
                 for (int i = 1; i <= 3; i++) {
                     meta.addEnchant(enchants[getRandomEnchantNumber()], getRandomEnchantLevelNumber(lv), true);
                     w.playSound(loc, Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1, 1);
@@ -291,16 +344,15 @@ public class Tools {
 
     public int getItemGradeAsInt(ItemStack item) {
         String name = item.getItemMeta().getDisplayName();
-        String color;
-        color = ChatColor.getLastColors(name);
+        List<String> grade = item.getItemMeta().getLore();
 
-        if(color.equals(ChatColor.GREEN)) {
+        if(grade.get(0).equals("II")) {
             return 2;
         }
-        else if(color.equals(ChatColor.LIGHT_PURPLE)) {
+        else if(grade.get(0).equals("III")) {
             return 3;
         }
-        else if(color.equals(ChatColor.GOLD)) {
+        else if(grade.get(0).equals("IV")) {
             return 4;
         }
         else {
@@ -308,4 +360,12 @@ public class Tools {
         }
     }
 
+    public void spawnFirework(Location location, World world, Color color) {
+        Firework firework = world.spawn(location, Firework.class);
+        FireworkMeta fireworkMeta = firework.getFireworkMeta();
+        FireworkEffect effect = FireworkEffect.builder().withColor(Color.WHITE, Color.YELLOW, Color.RED).withFade(Color.RED).with(FireworkEffect.Type.BALL_LARGE).trail(false).flicker(true).build();
+        fireworkMeta.addEffect(effect);
+        fireworkMeta.setPower(1);
+        firework.setFireworkMeta(fireworkMeta);
+    }
 }
